@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pages Interdites · Catalogue des livres bannis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="wrap topbar">
+  <a class="brand" href="#catalogue">Pages <span>Interdites</span></a>
+  <nav class="tabs">
+    <a href="#catalogue" data-v="catalogue">Catalogue</a>
+    <a href="#statistiques" data-v="statistiques">Statistiques</a>
+    <a href="#a-propos" data-v="a-propos">À propos et données</a>
+  </nav>
+</div></header>
+
+<main>
+<section class="view" id="v-catalogue">
+  <div class="wrap hero">
+    <div>
+      <h1>Les livres qu'on a voulu <span class="bar">faire taire</span>.</h1>
+      <p>Près de 30 000 livres interdits, restreints ou contestés dans 119 pays : par des gouvernements, des autorités religieuses, des écoles ou des bibliothèques.</p>
+    </div>
+    <div class="figs">
+      <div class="fig"><b id="f-books">…</b><small>livres</small></div>
+      <div class="fig"><b id="f-bans">…</b><small>mesures de censure</small></div>
+      <div class="fig"><b id="f-countries">…</b><small>pays</small></div>
+    </div>
+  </div>
+
+  <div class="controls"><div class="wrap">
+    <div class="ctrl-row">
+      <label class="search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="q" type="search" placeholder="Titre ou auteur…" aria-label="Rechercher">
+      </label>
+      <select id="country" aria-label="Pays"><option value="">Tous les pays</option></select>
+      <select id="scope" aria-label="Portée"><option value="">Toutes les portées</option></select>
+      <select id="status" aria-label="Statut">
+        <option value="">Tous les statuts</option>
+        <option value="active">Interdiction en vigueur</option>
+        <option value="historical">Historique</option>
+        <option value="rescinded">Levée</option>
+      </select>
+      <select id="era" aria-label="Publication">
+        <option value="">Toutes les époques</option>
+        <option value="0-1799">Publié avant 1800</option>
+        <option value="1800-1899">XIXe siècle</option>
+        <option value="1900-1949">1900 à 1949</option>
+        <option value="1950-1999">1950 à 1999</option>
+        <option value="2000-3000">Depuis 2000</option>
+      </select>
+      <select id="sort" aria-label="Tri">
+        <option value="countries">Tri : le plus de pays</option>
+        <option value="bans">Tri : le plus de mesures</option>
+        <option value="title">Tri : titre</option>
+        <option value="year">Tri : publication la plus ancienne</option>
+        <option value="year-d">Tri : publication la plus récente</option>
+        <option value="first">Tri : interdiction la plus ancienne</option>
+      </select>
+      <button class="btn ghost" id="random">Livre au hasard</button>
+    </div>
+    <div class="chips" id="chips"></div>
+  </div></div>
+
+  <div class="wrap">
+    <div class="meta-row"><span id="count"></span><button class="btn ghost" id="reset" style="padding:6px 12px">Réinitialiser</button></div>
+    <div class="grid" id="grid"><div class="loading empty">Chargement du catalogue…</div></div>
+    <button class="btn ghost more" id="more" hidden>Afficher plus</button>
+  </div>
+</section>
+
+<section class="view" id="v-statistiques"><div class="wrap">
+  <h2 class="section-h">Statistiques</h2>
+  <p class="section-sub">Comptes en livres distincts, pas en mesures : un même titre retiré de cent écoles compte une seule fois. Clique sur une barre pour filtrer le catalogue.</p>
+  <div class="stats">
+    <div class="panel"><h4>Motifs de censure</h4><div id="s-reasons"></div></div>
+    <div class="panel"><h4>Pays où le plus de livres ont été visés</h4><div id="s-countries"></div></div>
+    <div class="panel"><h4>Qui censure (portée des mesures)</h4><div id="s-scopes"></div></div>
+    <div class="panel"><h4>Statut des mesures</h4><div id="s-status"></div></div>
+    <div class="panel" style="grid-column:1/-1"><h4>Mesures de censure par période de début</h4><div class="timeline" id="s-time"></div></div>
+  </div>
+  <p class="credit" style="padding-bottom:50px">Les données sont fortement orientées vers les sources anglophones : les États-Unis apparaissent beaucoup parce que les interdictions y sont systématiquement recensées (PEN America, ALA), alors que la censure en Chine, en Russie ou en Iran est bien plus fréquente que ce que montrent les chiffres.</p>
+</div></section>
+
+<section class="view" id="v-a-propos"><div class="wrap about">
+  <h2 class="section-h">À propos</h2>
+  <p>Pages Interdites recense des livres interdits, restreints ou contestés à travers le monde. Chaque fiche liste les mesures de censure connues avec le pays, l'année, la portée (école, gouvernement, bibliothèque…), le statut, les motifs invoqués et la source.</p>
+  <p class="note">Données : <strong>Banned Books, Open Censorship Core</strong>, Ludo Raedts / <a href="https://www.banned-books.org/" target="_blank" rel="noopener">banned-books.org</a>, version du <span id="data-version">10/11/2026</span>, licence <a href="https://creativecommons.org/licenses/by/4.0/deed.fr" target="_blank" rel="noopener">CC-BY-4.0</a>, DOI <a href="https://doi.org/10.5281/zenodo.24109205" target="_blank" rel="noopener">10.5281/zenodo.24109205</a>. Les titres sont ceux du jeu de données (souvent en anglais) ; une grande partie des sources n'est pas encore vérifiée par ses auteurs.</p>
+
+  <h2 class="section-h" style="font-size:26px">Mettre à jour les données</h2>
+  <p>Quand une nouvelle version paraît sur <a href="https://zenodo.org/records/24109205" target="_blank" rel="noopener">Zenodo</a>, dépose ici le fichier <code>banned-books-open-core.zip</code> (ou ses fichiers CSV : books, authors, bans, ban_reasons, ban_sources, countries). Un fichier CSV ou JSON plat avec des colonnes <code>title</code>, <code>author</code>, <code>country</code>, <code>year</code>, <code>reason</code> est aussi accepté.</p>
+  <label class="drop" id="drop">
+    <input type="file" id="file" accept=".zip,.csv,.json,.tsv" multiple>
+    <strong>Dépose le zip ou les CSV ici</strong> ou clique pour les choisir
+    <div id="import-msg" style="margin-top:8px;font-size:14px;color:var(--ink-3)"></div>
+  </label>
+  <div class="ctrl-row"><button class="btn ghost" id="restore">Revenir aux données intégrées</button></div>
+  <p class="credit">L'import ne modifie que ton affichage, dans ton navigateur. Pour mettre à jour le site pour tout le monde, il faut le republier avec les nouvelles données.</p>
+
+  <h2 class="section-h" style="font-size:26px">Sources principales du jeu de données</h2>
+  <ul>
+    <li><a href="https://pen.org/book-bans/" target="_blank" rel="noopener">PEN America</a> : index des interdictions scolaires aux États-Unis</li>
+    <li><a href="https://www.ala.org/bbooks" target="_blank" rel="noopener">American Library Association</a></li>
+    <li>Index librorum prohibitorum (Rome, 1877)</li>
+    <li>Liste des écrits nuisibles et indésirables (Allemagne, 1938)</li>
+    <li>Ministère de l'Intérieur de Malaisie (KDN)</li>
+  </ul>
+</div></section>
+</main>
+
+<footer><div class="wrap">Pages Interdites · Données <a href="https://www.banned-books.org/" target="_blank" rel="noopener">banned-books.org</a> (CC-BY-4.0)</div></footer>
+
+<dialog id="dlg"><div class="dlg" style="position:relative">
+  <button class="x" id="dlg-x" aria-label="Fermer">×</button>
+  <div id="dlg-body"></div>
+</div></dialog>
+
+<script src="jszip.min.js"></script>
+<script src="core.js"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
